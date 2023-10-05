@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:poked3x/data/models/pokemon.dart';
 import 'package:poked3x/data/models/pokemon_species.dart';
 
+import '../../common/constants.dart';
+
 DetailPokemon detailPokemonFromJson(String str) =>
     DetailPokemon.fromJson(json.decode(str));
 
@@ -25,8 +27,13 @@ class DetailPokemon {
   final List<Pokemon> evolutionChain;
   final PokemonSpecies? pokemonSpecies;
   final int weight;
-  int get idEvolution => int.parse(species.url.split('/').last);
-  int get idSpecies => int.parse(species.url.split('/').last);
+  int get idEvolution => int.parse(
+      species.url.split('/').where((element) => element.isNotEmpty).last);
+  int get idSpecies => int.parse(
+      species.url.split('/').where((element) => element.isNotEmpty).last);
+  String get imageUrl => "${Constants.baseUrlPngImages}$id.png";
+  String get gifUrl => "${Constants.baseUrlGifImages}$id.gif";
+  String get svgUrl => "${Constants.baseUrlSvgImages}$id.svg";
 
   DetailPokemon({
     required this.abilities,

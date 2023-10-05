@@ -26,6 +26,9 @@ class PokemonSpecies {
   final int order;
   final PokeCon shape;
 
+  int get idEvo => int.parse(
+      evolutionChain.split('/').where((element) => element.isNotEmpty).last);
+
   PokemonSpecies({
     required this.baseHappiness,
     required this.captureRate,

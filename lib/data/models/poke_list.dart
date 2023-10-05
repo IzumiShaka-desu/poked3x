@@ -12,6 +12,19 @@ class PokeList {
     required this.previous,
     required this.results,
   });
+  PokeList copyWith({
+    int? count,
+    String? next,
+    dynamic previous,
+    List<Pokemon>? results,
+  }) {
+    return PokeList(
+      count: count ?? this.count,
+      next: next ?? this.next,
+      previous: previous ?? this.previous,
+      results: results ?? this.results,
+    );
+  }
 
   factory PokeList.fromJson(Map<String, dynamic> json) => PokeList(
         count: json["count"],

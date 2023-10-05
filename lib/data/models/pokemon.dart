@@ -5,28 +5,33 @@ import 'package:poked3x/common/utils/color_utils.dart';
 class Pokemon {
   final String name;
   final String url;
+  final String color;
   final ColorScheme colorScheme;
 
   String get imageUrl => "${Constants.baseUrlPngImages}$id.png";
   String get gifUrl => "${Constants.baseUrlGifImages}$id.gif";
   String get svgUrl => "${Constants.baseUrlSvgImages}$id.svg";
 
-  int get id => int.parse(url.split('/').last);
+  int get id =>
+      int.parse(url.split('/').where((element) => element.isNotEmpty).last);
 
   Pokemon({
     required this.name,
     required this.url,
+    this.color = "",
     this.colorScheme = const ColorScheme.dark(),
   });
 
   Pokemon copyWith({
     String? name,
     String? url,
+    String? color,
     ColorScheme? colorScheme,
   }) {
     return Pokemon(
       name: name ?? this.name,
       url: url ?? this.url,
+      color: color ?? this.color,
       colorScheme: colorScheme ?? this.colorScheme,
     );
   }
@@ -35,8 +40,7 @@ class Pokemon {
     return Pokemon(
       name: name,
       url: url,
-      colorScheme: await getColorFromImageNetwork(
-          "${Constants.baseUrlPngImages}$id.png"),
+      colorScheme: await getColorFromImageNetwork(imageUrl),
     );
   }
 
