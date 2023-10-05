@@ -4,7 +4,8 @@ class AppState<T> {
   final ScreenStatus screenState;
   final String? errorMessage;
   final T? data;
-
+  bool get isLoading => screenState == ScreenStatus.loading;
+  bool get isError => screenState == ScreenStatus.error;
   AppState({
     this.screenState = ScreenStatus.initial,
     this.errorMessage,

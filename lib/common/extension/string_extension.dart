@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:poked3x/common/utils/color_utils.dart';
+
 extension StringExtension on String {
   bool get isCodeValid {
     // example of code : 2212T00252K-AMB2311-10329
@@ -15,4 +19,38 @@ extension StringExtension on String {
     if (isEmpty) return "";
     return "${this[0].toUpperCase()}${substring(1)}";
   }
+
+  Color get colorNameAsColor {
+    switch (this) {
+      case "black":
+        return fromHex("#705746");
+      case "blue":
+        return fromHex("#76BDFE");
+      case "brown":
+        return fromHex("#B6A136");
+      case "gray":
+        return fromHex("#B7B7CE");
+      case "green":
+        return fromHex("#48D0B0");
+      case "pink":
+        return fromHex("#D685AD");
+      case "purple":
+        return fromHex("#A33EA1");
+      case "red":
+        return fromHex("#FB6C6C");
+      case "white":
+        return fromHex("#A8A77A");
+      case "yellow":
+        return fromHex("#FFD86F");
+      default:
+        return fromHex("#A8A77A");
+    }
+  }
+}
+
+String fillStringWith(String string,
+    {String fillString = "0", int maxLength = 3}) {
+  if (string.length >= maxLength) return string;
+  final diff = maxLength - string.length;
+  return "${fillString * diff}$string";
 }
